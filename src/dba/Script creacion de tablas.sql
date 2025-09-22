@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS program;
 DROP TABLE IF EXISTS faculty;
 DROP TABLE IF EXISTS roles;
 drop table if exists users;
+drop table if exists users_roles;
 
 
 CREATE TABLE faculty(
@@ -91,12 +92,24 @@ create table users_roles(
 
 
 ---Insert
-delete from faculty;
-
 insert into faculty values(1,"FACULTAD DE INGENERIA ELECTRONICA Y TELECOMUNICACIONES");
 
 insert into program(name, idFaculty) values ("Ingenieria de Sistemas", 1);
 insert into program(name, idFaculty) values ("Ingenieria Electronica y Telecomunicaciones", 1);
 insert into program(name, idFaculty) values ("Automatica Industrial", 1);
 insert into program(name, idFaculty) values ("Tecnologia en Telematica", 1);
+
+
+insert into roles(rol) values("ESTUDIANTE");
+insert into roles(rol) values("DIRECTOR");
+insert into roles(rol) values("COORDINADOR");
+
+
+-----------
+delete from users_roles where idUser > 0;
+delete from users where id > 0;
+delete from person where id > 0;
+delete from student where id > 0;
+delete from teacher where id > 0;
+
 

@@ -5,11 +5,7 @@
 package co.unicauca.solid.UI;
 //imports
 import co.unicauca.domain.Program;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import co.unicauca.domain.Register;
-import java.util.Arrays;
-import javax.swing.JOptionPane;
+import co.unicauca.domain.Roles;
 /**
  *@summary Patron formato encargado de la recolección y verificación de datos
  * @param nombre, apellido, celular, programa, email, rol, contraseña
@@ -23,13 +19,22 @@ public class RegisterForm extends javax.swing.JPanel{
     public RegisterForm() {
         initComponents();
         loadProgramas();
+        loadRoles();
     }
     
     private void loadProgramas() {
         var listProgram = Controller.getAllProgram();
         inPrograma.removeAllItems(); 
-        for (var p : listProgram) {
-            inPrograma.addItem(p.toString()); 
+        for (Program p : listProgram) {
+            inPrograma.addItem(p); 
+        }
+    }
+    
+    private void loadRoles() {
+        var listRoles = Controller.getAllRoles();
+        inRol.removeAllItems(); 
+        for (var r : listRoles) {
+            inRol.addItem(r); 
         }
     }
 
@@ -81,8 +86,6 @@ public class RegisterForm extends javax.swing.JPanel{
         lblPrograma.setLabelFor(inPrograma);
         lblPrograma.setText("Programa:");
 
-        inPrograma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ingenieria de Sistemas", "Ingenieria Electronica y Telecomunicaciones", "Automatica Industrial", "Tecnologia en Telematica" }));
-
         lblEmail.setLabelFor(inEmail);
         lblEmail.setText("Email:");
 
@@ -110,8 +113,6 @@ public class RegisterForm extends javax.swing.JPanel{
         });
 
         lblRol.setText("Rol:");
-
-        inRol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Estudiante", "Docente" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -215,7 +216,7 @@ public class RegisterForm extends javax.swing.JPanel{
         //String programa = inPrograma.getSelectedItem().toString();
         var programa = (Program) inPrograma.getSelectedItem();
         String email = inEmail.getText().trim();
-        String rol = inRol.getSelectedItem().toString();
+        var rol = (Roles) inRol.getSelectedItem();
         char[] contra = inContra.getPassword();
         char[] contra2 = inContra2.getPassword();//Confirma la contraseña
         //Se manda la info al controlador para que haga el registro
@@ -231,8 +232,8 @@ public class RegisterForm extends javax.swing.JPanel{
     private javax.swing.JTextField inEmail;
     private javax.swing.JTextField inNombre;
     private javax.swing.JTextField inNumTel;
-    private javax.swing.JComboBox<String> inPrograma;
-    private javax.swing.JComboBox<String> inRol;
+    private javax.swing.JComboBox<Program> inPrograma;
+    private javax.swing.JComboBox<Roles> inRol;
     private javax.swing.JLabel lblApellidos;
     private javax.swing.JLabel lblContra;
     private javax.swing.JLabel lblContra2;

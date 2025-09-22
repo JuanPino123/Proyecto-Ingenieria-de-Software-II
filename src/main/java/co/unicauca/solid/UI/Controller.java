@@ -8,12 +8,12 @@ import co.unicauca.domain.Program;
 import co.unicauca.solid.domain.access.Factory;
 import co.unicauca.solid.domain.access.IUserRepository;
 import co.unicauca.domain.Register;
+import co.unicauca.domain.Roles;
 import co.unicauca.domain.utilities.Cifrador;
 import co.unicauca.domain.utilities.clsExceptions;
-import co.unicauca.solid.domain.access.IProgramRepository;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+import javax.management.relation.Role;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -99,7 +99,7 @@ public class Controller {
      * @param contra Contraseña
      * @param contra2 Contraseña de confirmacion
      */
-    public static void registrar(String nom, String ape, String email, String rol, Program programa, Long numCel, char[] contra, char[] contra2){
+    public static void registrar(String nom, String ape, String email, Roles rol, Program programa, Long numCel, char[] contra, char[] contra2){
         try{
             IUserRepository repository = Factory.getInstance().getUserRepository("default");
             if(!Controller.verificacionDatos(nom, ape, email, contra, contra2)){new clsExceptions("Datos no validos, verifique que los datos ingresados sean correctos", "Correo Invalido");}
@@ -124,6 +124,16 @@ public class Controller {
         }
         return List.of();
     }
+    
+    public static List<Roles> getAllRoles(){
+        try {
+            var repository = Factory.getInstance().getRolesRepository("default");
+            return repository.getAll();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error inesperado:" + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        return List.of();
+    }
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Funciones de Login">
@@ -142,7 +152,7 @@ public class Controller {
      * @param contra2 
      */
     @Deprecated
-    public static void wrapperRegistrar(String nom, String ape, String email, String rol, Program programa, Long numCel, char[] contra, char[] contra2){
+    public static void wrapperRegistrar(String nom, String ape, String email, Roles rol, Program programa, Long numCel, char[] contra, char[] contra2){
         registrar(nom, ape, email, rol, programa, numCel, contra, contra2);
     }
     

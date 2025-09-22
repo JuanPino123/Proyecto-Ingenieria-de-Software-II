@@ -8,6 +8,8 @@ import co.unicauca.domain.Program;
 import co.unicauca.solid.domain.access.IUserRepository;
 import co.unicauca.solid.domain.access.Factory;
 import co.unicauca.domain.Register;
+import co.unicauca.domain.Roles;
+import javax.management.relation.Role;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,10 +35,12 @@ public class testUserRepository {
     public void testRepository() throws Exception{
         Program program = new Program();
         program.setName("Ingenieria de Sistemas");
+        Roles rol = new Roles();
+        rol.setRol("Estudiante");
         Register testRegister = new Register(//Register de prueba
                 "Jhon", "Doe",
                 testCorreo,
-                "Estudiante", program,
+                rol, program,
                 3014155062L,
                 "Pru3b@123");
         Assertions.assertTrue(testRepository.register(testRegister));
@@ -48,10 +52,12 @@ public class testUserRepository {
         testRepository.deleteUserByEmail(testCorreoNN);
         Program program = new Program();
         program.setName("Ingenieria de Sistemas");
+        Roles rol = new Roles();
+        rol.setRol("Estudiante");
         Register testRegisterNN = new Register(//Register de prueba sin numero
                 "Jane", "Doe",
                 testCorreo,
-                "Estudiante", program,
+                rol, program,
                 null,
                 "Pru3b@123");
         Assertions.assertTrue(testRepository.register(testRegisterNN));

@@ -175,18 +175,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="inPrograma">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Ingenieria de Sistemas"/>
-            <StringItem index="1" value="Ingenieria Electronica y Telecomunicaciones"/>
-            <StringItem index="2" value="Automatica Industrial"/>
-            <StringItem index="3" value="Tecnologia en Telematica"/>
-          </StringArray>
-        </Property>
-      </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Program&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEmail">
@@ -251,16 +241,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="inRol">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="2">
-            <StringItem index="0" value="Estudiante"/>
-            <StringItem index="1" value="Docente"/>
-          </StringArray>
-        </Property>
-      </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Roles&gt;"/>
       </AuxValues>
     </Component>
   </SubComponents>

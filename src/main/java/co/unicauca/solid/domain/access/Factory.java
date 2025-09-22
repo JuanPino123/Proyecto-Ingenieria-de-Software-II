@@ -38,4 +38,12 @@ public class Factory {
         return result;
     }
     
+    public IRolesRepository getRolesRepository(String type){
+        IRolesRepository result = null;
+        switch(type){
+            case "default":result = new RolesRepository();
+        }
+        return result;
+    }
+    
 }

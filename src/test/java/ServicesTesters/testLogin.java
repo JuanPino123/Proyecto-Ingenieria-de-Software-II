@@ -10,6 +10,7 @@ import co.unicauca.domain.utilities.Cifrador;
 import co.unicauca.solid.domain.access.IUserRepository;
 import co.unicauca.solid.domain.access.Factory;
 import co.unicauca.domain.Register;
+import co.unicauca.domain.Roles;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,10 +35,12 @@ public class testLogin {
         }
         Program program = new Program();
         program.setName("Ingenieria de Sistemas");
+        Roles rol = new Roles();
+        rol.setRol("Estudiante");
         Register testRegister = new Register(
                 "Jhon", "Doe",
                 testCorreo,
-                "Estudiante", program,
+                rol, program,
                 3014155062L,
                 Cifrador.base64Converter(Cifrador.cifrarContrasena(testContra)));
             if(testRepository.register(testRegister))System.out.println("Usuario de prueba creado correctamente");

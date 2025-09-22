@@ -1,16 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package co.unicauca.solid.domain.access;
 
 import co.unicauca.domain.Register;
 import Connection.GenConnection;
+import co.unicauca.domain.TypeRoles;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Types;
+import java.util.List;
 
 /**
  *
@@ -26,7 +23,16 @@ public class UserRepository implements IUserRepository{
     @Override
     public boolean register(Register newRegister){
         try{
-            registerUser(registerPerson(newRegister), newRegister);
+            int idPerson = registerPerson(newRegister);
+            int idUser = registerUser(idPerson, newRegister);
+            registerRolesUser(idUser, newRegister.getRoles().getId());
+            
+            if (newRegister.getRoles().getRol().equals(TypeRoles.ESTUDIANTE)) {
+                registerStudent(idPerson, newRegister.getPrograma().getId());
+            }else if(List.of(TypeRoles.COORDINADOR, TypeRoles.DIRECTOR).contains(newRegister.getRoles().getRol())){
+                registerTeacher(idPerson);
+            }
+            
             return true;
         }catch(SQLException ex){
             System.out.println("Error:" + ex.getMessage());
@@ -36,21 +42,18 @@ public class UserRepository implements IUserRepository{
     
     private int registerPerson(Register newRegister) throws SQLException{
         try{
-            String SQL = "INSERT INTO users ( name, lastName, phone, programa, email, password, rol ) "+
-                    "VALUES ( ?, ?, ?, ?, ?, ?, ? )";
+            String SQL = "INSERT INTO PERSON ( name, lastName, phone ) "+
+                    "VALUES ( ?, ?, ? )";
             GenConnection.connect();
             PreparedStatement pstmt = GenConnection.conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, newRegister.getNombre());
             pstmt.setString(2, newRegister.getApellido());
-            if(newRegister.getNumTel() != null){pstmt.setLong(3, newRegister.getNumTel());
-            }else{pstmt.setNull(6, Types.BIGINT);}
-            //pstmt.setString(4, newRegister.getPrograma());
-            pstmt.setString(5, newRegister.getCorreo());
-            pstmt.setString(6, newRegister.getContra());
-            pstmt.setString(7, newRegister.getRol());
+            if(newRegister.getNumTel() != null){
+                pstmt.setLong(3, newRegister.getNumTel());
+            }
             pstmt.executeUpdate();
             
-             ResultSet rs = pstmt.getGeneratedKeys();
+            ResultSet rs = pstmt.getGeneratedKeys();
             int generatedId = -1;
             if (rs.next()) {
                 generatedId = rs.getInt(1); // Primera columna contiene el id
@@ -62,27 +65,23 @@ public class UserRepository implements IUserRepository{
             throw ex;
         }
     }
-    
+     
     private int registerUser(int idPerson, Register newRegister) throws SQLException{
         try{
-            String SQL = "INSERT INTO users ( nombres, apellidos, celular, programa, email, password, rol ) "+
-                    "VALUES ( ?, ?, ?, ?, ?, ?, ? )";
+            String SQL = "INSERT INTO users ( email, password, idPerson ) "+
+                    "VALUES ( ?, ?, ? )";
             GenConnection.connect();
             PreparedStatement pstmt = GenConnection.conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
-            pstmt.setString(1, newRegister.getNombre());
-            pstmt.setString(2, newRegister.getApellido());
-            if(newRegister.getNumTel() != null){pstmt.setLong(3, newRegister.getNumTel());
-            }else{pstmt.setNull(6, Types.BIGINT);}
-            //pstmt.setString(4, newRegister.getPrograma());
-            pstmt.setString(5, newRegister.getCorreo());
-            pstmt.setString(6, newRegister.getContra());
-            pstmt.setString(7, newRegister.getRol());
+            pstmt.setString(1, newRegister.getCorreo());
+            pstmt.setString(2, newRegister.getContra());
+            pstmt.setInt(3, idPerson);
+           
             pstmt.executeUpdate();
             
-             ResultSet rs = pstmt.getGeneratedKeys();
+            ResultSet rs = pstmt.getGeneratedKeys();
             int generatedId = -1;
             if (rs.next()) {
-                generatedId = rs.getInt(1); // Primera columna contiene el id
+                generatedId = rs.getInt(1); 
             }
             
             GenConnection.disconnect();
@@ -92,7 +91,57 @@ public class UserRepository implements IUserRepository{
         }
     }
     
+    private boolean registerRolesUser(int idUser, int idRol) throws SQLException{
+        try{
+            String SQL = "INSERT INTO users_roles ( idUser, idRol ) "+
+                    "VALUES ( ?, ?)";
+            GenConnection.connect();
+            PreparedStatement pstmt = GenConnection.conn.prepareStatement(SQL);
+            pstmt.setInt(1, idUser);
+            pstmt.setInt(2, idRol);
+           
+            pstmt.execute();
+            
+            GenConnection.disconnect();
+            return true;
+        }catch(SQLException ex){
+            throw ex;
+        }
+    }
     
+    private boolean registerStudent(int idPerson, int idProgram) throws SQLException{
+        try{
+            String SQL = "INSERT INTO student ( idPerson, idProgram ) "+
+                    "VALUES ( ?, ?)";
+            GenConnection.connect();
+            PreparedStatement pstmt = GenConnection.conn.prepareStatement(SQL);
+            pstmt.setInt(1, idPerson);
+            pstmt.setInt(2, idProgram);
+            pstmt.execute();
+            
+            GenConnection.disconnect();
+            return true;
+        }catch(SQLException ex){
+            throw ex;
+        }
+    }
+    
+    private boolean registerTeacher(int idPerson) throws SQLException{
+        try{
+            String SQL = "INSERT INTO teacher ( idPerson ) "+
+                    "VALUES ( ?)";
+            GenConnection.connect();
+            PreparedStatement pstmt = GenConnection.conn.prepareStatement(SQL);
+            pstmt.setInt(1, idPerson);
+            pstmt.execute();
+            
+            GenConnection.disconnect();
+            return true;
+        }catch(SQLException ex){
+            throw ex;
+        }
+    }
+     
     /**
      * Revisa si ya existe un usuario con el correo introducido
      * @param email Correo
