@@ -123,6 +123,7 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="inNombre">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Dayana"/>
         <Property name="name" type="java.lang.String" value="Nombre" noResource="true"/>
       </Properties>
       <AccessibilityProperties>
@@ -147,6 +148,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="inApellidos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Idrobo"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblApellidos">
       <Properties>
@@ -157,6 +161,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="inNumTel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="3007463520"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblPrograma">
       <Properties>
@@ -190,6 +198,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="inEmail">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="dayana@unicauca.edu.co"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblContra">
       <Properties>
@@ -208,8 +219,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="inContra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Dayana$123"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="inContra2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Dayana$123"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTitulo">
       <Properties>

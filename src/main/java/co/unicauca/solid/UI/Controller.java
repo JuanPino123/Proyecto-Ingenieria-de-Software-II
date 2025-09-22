@@ -4,11 +4,15 @@
  */
 package co.unicauca.solid.UI;
 
+import co.unicauca.domain.Program;
 import co.unicauca.solid.domain.access.Factory;
 import co.unicauca.solid.domain.access.IUserRepository;
 import co.unicauca.domain.Register;
 import co.unicauca.domain.utilities.Cifrador;
 import co.unicauca.domain.utilities.clsExceptions;
+import co.unicauca.solid.domain.access.IProgramRepository;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -95,9 +99,9 @@ public class Controller {
      * @param contra Contraseña
      * @param contra2 Contraseña de confirmacion
      */
-    public static void registrar(String nom, String ape, String email, String rol, String programa, Long numCel, char[] contra, char[] contra2){
+    public static void registrar(String nom, String ape, String email, String rol, Program programa, Long numCel, char[] contra, char[] contra2){
         try{
-            IUserRepository repository = Factory.getInstance().getRepository("default");
+            IUserRepository repository = Factory.getInstance().getUserRepository("default");
             if(!Controller.verificacionDatos(nom, ape, email, contra, contra2)){new clsExceptions("Datos no validos, verifique que los datos ingresados sean correctos", "Correo Invalido");}
             if(repository.checkUser(email)){new clsExceptions("Este usuario ya existe", "Usario existente");}
                 String contraCif = Cifrador.base64Converter(Cifrador.cifrarContrasena(contra));
@@ -109,6 +113,16 @@ public class Controller {
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "Error inesperado:" + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public static List<Program> getAllProgram(){
+        try {
+            var repository = Factory.getInstance().getProgramRepository("default");
+            return repository.getAll();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error inesperado:" + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        return List.of();
     }
     //</editor-fold>
     
@@ -128,7 +142,7 @@ public class Controller {
      * @param contra2 
      */
     @Deprecated
-    public static void wrapperRegistrar(String nom, String ape, String email, String rol, String programa, Long numCel, char[] contra, char[] contra2){
+    public static void wrapperRegistrar(String nom, String ape, String email, String rol, Program programa, Long numCel, char[] contra, char[] contra2){
         registrar(nom, ape, email, rol, programa, numCel, contra, contra2);
     }
     

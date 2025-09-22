@@ -4,6 +4,7 @@
  */
 package co.unicauca.solid.UI;
 //imports
+import co.unicauca.domain.Program;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import co.unicauca.domain.Register;
@@ -21,6 +22,15 @@ public class RegisterForm extends javax.swing.JPanel{
      */
     public RegisterForm() {
         initComponents();
+        loadProgramas();
+    }
+    
+    private void loadProgramas() {
+        var listProgram = Controller.getAllProgram();
+        inPrograma.removeAllItems(); 
+        for (var p : listProgram) {
+            inPrograma.addItem(p.toString()); 
+        }
     }
 
     /**
@@ -51,6 +61,7 @@ public class RegisterForm extends javax.swing.JPanel{
         lblRol = new javax.swing.JLabel();
         inRol = new javax.swing.JComboBox<>();
 
+        inNombre.setText("Dayana");
         inNombre.setName("Nombre"); // NOI18N
 
         lblNombre.setLabelFor(inNombre);
@@ -59,8 +70,13 @@ public class RegisterForm extends javax.swing.JPanel{
         lblNúmero.setLabelFor(inNumTel);
         lblNúmero.setText("Numero de celular:");
 
+        inApellidos.setText("Idrobo");
+
         lblApellidos.setLabelFor(inApellidos);
         lblApellidos.setText("Apellidos:");
+
+        inNumTel.setText("3007463520");
+        inNumTel.setToolTipText("");
 
         lblPrograma.setLabelFor(inPrograma);
         lblPrograma.setText("Programa:");
@@ -70,11 +86,17 @@ public class RegisterForm extends javax.swing.JPanel{
         lblEmail.setLabelFor(inEmail);
         lblEmail.setText("Email:");
 
+        inEmail.setText("dayana@unicauca.edu.co");
+
         lblContra.setLabelFor(inContra);
         lblContra.setText("Contraseña:");
 
         lblContra2.setLabelFor(inContra2);
         lblContra2.setText("Comfirmar contraseña:");
+
+        inContra.setText("Dayana$123");
+
+        inContra2.setText("Dayana$123");
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -190,7 +212,8 @@ public class RegisterForm extends javax.swing.JPanel{
         String nom = inNombre.getText().trim();
         String ape = inApellidos.getText().trim();
         Long numCel = Long.parseLong(inNumTel.getText().trim());//Opcional
-        String programa = inPrograma.getSelectedItem().toString();
+        //String programa = inPrograma.getSelectedItem().toString();
+        var programa = (Program) inPrograma.getSelectedItem();
         String email = inEmail.getText().trim();
         String rol = inRol.getSelectedItem().toString();
         char[] contra = inContra.getPassword();

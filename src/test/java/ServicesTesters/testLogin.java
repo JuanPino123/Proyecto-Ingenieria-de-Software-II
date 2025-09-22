@@ -4,6 +4,7 @@
  */
 package ServicesTesters;
 
+import co.unicauca.domain.Program;
 import co.unicauca.solid.domain.services.Login;
 import co.unicauca.domain.utilities.Cifrador;
 import co.unicauca.solid.domain.access.IUserRepository;
@@ -20,7 +21,7 @@ import org.junit.jupiter.api.Test;
  */
 public class testLogin {
     
-    private final IUserRepository testRepository = Factory.getInstance().getRepository("default");
+    private final IUserRepository testRepository = Factory.getInstance().getUserRepository("default");
     private final String testCorreo = "test@unicauca.edu.co";//Uselo para cada vez que se hace una prueba
     private final char[] testContra = "Pru3b@123".toCharArray();
     
@@ -31,10 +32,12 @@ public class testLogin {
         }else{
             System.out.println("Usuario de prueba no existe");
         }
+        Program program = new Program();
+        program.setName("Ingenieria de Sistemas");
         Register testRegister = new Register(
                 "Jhon", "Doe",
                 testCorreo,
-                "Estudiante", "Ingenieria de Sistemas",
+                "Estudiante", program,
                 3014155062L,
                 Cifrador.base64Converter(Cifrador.cifrarContrasena(testContra)));
             if(testRepository.register(testRegister))System.out.println("Usuario de prueba creado correctamente");

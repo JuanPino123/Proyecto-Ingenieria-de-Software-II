@@ -22,10 +22,18 @@ public class Factory {
         return instance;
     }
     
-    public IUserRepository getRepository(String type){
+    public IUserRepository getUserRepository(String type){
         IUserRepository result = null;
         switch(type){
             case "default":result = new UserRepository();
+        }
+        return result;
+    }
+    
+    public IProgramRepository getProgramRepository(String type){
+        IProgramRepository result = null;
+        switch(type){
+            case "default":result = new ProgramRepository();
         }
         return result;
     }

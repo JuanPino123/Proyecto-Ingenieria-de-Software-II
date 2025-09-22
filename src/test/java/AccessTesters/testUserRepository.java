@@ -4,6 +4,7 @@
  */
 package AccessTesters;
 
+import co.unicauca.domain.Program;
 import co.unicauca.solid.domain.access.IUserRepository;
 import co.unicauca.solid.domain.access.Factory;
 import co.unicauca.domain.Register;
@@ -17,7 +18,7 @@ import org.junit.jupiter.api.Test;
  */
 public class testUserRepository {
     
-    private final IUserRepository testRepository = Factory.getInstance().getRepository("default");
+    private final IUserRepository testRepository = Factory.getInstance().getUserRepository("default");
     private final String testCorreo = "test@unicauca.edu.co";//Uselo para cada vez que se hace una prueba
     private final String testCorreoNN = "test2@unicauca.edu.co";//Uselo para cada vez que se hace una prueba
     
@@ -30,10 +31,12 @@ public class testUserRepository {
     
     @Test
     public void testRepository() throws Exception{
+        Program program = new Program();
+        program.setName("Ingenieria de Sistemas");
         Register testRegister = new Register(//Register de prueba
                 "Jhon", "Doe",
                 testCorreo,
-                "Estudiante", "Ingenieria de Sistemas",
+                "Estudiante", program,
                 3014155062L,
                 "Pru3b@123");
         Assertions.assertTrue(testRepository.register(testRegister));
@@ -43,10 +46,12 @@ public class testUserRepository {
     @Test
     public void testRepositoryNoNumber() throws Exception{
         testRepository.deleteUserByEmail(testCorreoNN);
+        Program program = new Program();
+        program.setName("Ingenieria de Sistemas");
         Register testRegisterNN = new Register(//Register de prueba sin numero
                 "Jane", "Doe",
                 testCorreo,
-                "Estudiante", "Ingenieria de Sistemas",
+                "Estudiante", program,
                 null,
                 "Pru3b@123");
         Assertions.assertTrue(testRepository.register(testRegisterNN));
