@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package co.unicauca.solid.UI;
 
 /**
@@ -14,7 +10,7 @@ public class Selector extends javax.swing.JPanel {
      * Creates new form Selector
      */
     public Selector() {
-        initComponents();
+        initComponents();       
     }
 
     /**
@@ -26,69 +22,93 @@ public class Selector extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblDegreeWork = new javax.swing.JLabel();
+        pnlOptions = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btLogin = new javax.swing.JButton();
-        btRegistro = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        btnRegistro = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+
+        lblDegreeWork.setFont(new java.awt.Font("Bahnschrift", 0, 30)); // NOI18N
+        lblDegreeWork.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDegreeWork.setText("Sistema de Gestión de Trabajos de grado");
+        lblDegreeWork.setToolTipText("");
+        lblDegreeWork.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblDegreeWork.setName(""); // NOI18N
+        lblDegreeWork.setVerifyInputWhenFocusTarget(false);
+
+        pnlOptions.setLayout(new java.awt.GridLayout(4, 0, 0, 18));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Proyecto tesis");
-        jLabel1.setToolTipText("");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.setVerifyInputWhenFocusTarget(false);
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Home");
+        pnlOptions.add(jLabel1);
 
-        btLogin.setText("Login");
-        btLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btLogin.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setText("Iniciar sesión");
+        btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLoginActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
+        pnlOptions.add(btnLogin);
 
-        btRegistro.setText("Registro");
-        btRegistro.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistro.setText("Registrarse");
+        btnRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRegistroActionPerformed(evt);
+                btnRegistroActionPerformed(evt);
             }
         });
+        pnlOptions.add(btnRegistro);
+
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
+        pnlOptions.add(btnSalir);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
-                .addComponent(btRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblDegreeWork, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
-                    .addComponent(btRegistro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(lblDegreeWork, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRegistroActionPerformed
-        Controller.OpenPanel(new RegisterForm());
-        Controller.setSize(500, 400);
-        
-    }//GEN-LAST:event_btRegistroActionPerformed
+    private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
+        Controller.OpenPanel(new RegisterForm());     
+    }//GEN-LAST:event_btnRegistroActionPerformed
 
-    private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         Controller.OpenPanel(new LoginForm());
-    }//GEN-LAST:event_btLoginActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btLogin;
-    private javax.swing.JButton btRegistro;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnRegistro;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblDegreeWork;
+    private javax.swing.JPanel pnlOptions;
     // End of variables declaration//GEN-END:variables
 }

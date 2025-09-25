@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package co.unicauca.solid.UI;
 //imports
 import co.unicauca.domain.Program;
@@ -20,6 +16,7 @@ public class RegisterForm extends javax.swing.JPanel{
         initComponents();
         loadProgramas();
         loadRoles();
+        
     }
     
     private void loadProgramas() {
@@ -47,161 +44,152 @@ public class RegisterForm extends javax.swing.JPanel{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        inNombre = new javax.swing.JTextField();
+        lblTitulo = new javax.swing.JLabel();
+        pnlAll = new javax.swing.JPanel();
+        pnlPersonalInfo = new javax.swing.JPanel();
         lblNombre = new javax.swing.JLabel();
-        lblNúmero = new javax.swing.JLabel();
-        inApellidos = new javax.swing.JTextField();
+        inNombre = new javax.swing.JTextField();
         lblApellidos = new javax.swing.JLabel();
+        inApellidos = new javax.swing.JTextField();
+        lblNúmero = new javax.swing.JLabel();
         inNumTel = new javax.swing.JTextField();
         lblPrograma = new javax.swing.JLabel();
         inPrograma = new javax.swing.JComboBox<>();
+        lblRol = new javax.swing.JLabel();
+        inRol = new javax.swing.JComboBox<>();
         lblEmail = new javax.swing.JLabel();
         inEmail = new javax.swing.JTextField();
         lblContra = new javax.swing.JLabel();
-        lblContra2 = new javax.swing.JLabel();
         inContra = new javax.swing.JPasswordField();
+        lblContra2 = new javax.swing.JLabel();
         inContra2 = new javax.swing.JPasswordField();
-        lblTitulo = new javax.swing.JLabel();
+        pnlSaveAndHome = new javax.swing.JPanel();
         btReg = new javax.swing.JButton();
-        lblRol = new javax.swing.JLabel();
-        inRol = new javax.swing.JComboBox<>();
+        btnBackToHome = new javax.swing.JButton();
 
-        inNombre.setText("Dayana");
-        inNombre.setName("Nombre"); // NOI18N
-
-        lblNombre.setLabelFor(inNombre);
-        lblNombre.setText("Nombre:");
-
-        lblNúmero.setLabelFor(inNumTel);
-        lblNúmero.setText("Numero de celular:");
-
-        inApellidos.setText("Idrobo");
-
-        lblApellidos.setLabelFor(inApellidos);
-        lblApellidos.setText("Apellidos:");
-
-        inNumTel.setText("3007463520");
-        inNumTel.setToolTipText("");
-
-        lblPrograma.setLabelFor(inPrograma);
-        lblPrograma.setText("Programa:");
-
-        lblEmail.setLabelFor(inEmail);
-        lblEmail.setText("Email:");
-
-        inEmail.setText("dayana@unicauca.edu.co");
-
-        lblContra.setLabelFor(inContra);
-        lblContra.setText("Contraseña:");
-
-        lblContra2.setLabelFor(inContra2);
-        lblContra2.setText("Comfirmar contraseña:");
-
-        inContra.setText("Dayana$123");
-
-        inContra2.setText("Dayana$123");
+        setPreferredSize(new java.awt.Dimension(600, 500));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Registro");
 
-        btReg.setText("Registrar");
+        pnlPersonalInfo.setLayout(new java.awt.GridLayout(8, 2, 0, 2));
+
+        lblNombre.setLabelFor(inNombre);
+        lblNombre.setText("Nombre:");
+        pnlPersonalInfo.add(lblNombre);
+
+        inNombre.setText("Dayana");
+        inNombre.setName("Nombre"); // NOI18N
+        pnlPersonalInfo.add(inNombre);
+        inNombre.getAccessibleContext().setAccessibleName("Nombre");
+        inNombre.getAccessibleContext().setAccessibleDescription("Nombre del usuario");
+
+        lblApellidos.setLabelFor(inApellidos);
+        lblApellidos.setText("Apellidos:");
+        pnlPersonalInfo.add(lblApellidos);
+
+        inApellidos.setText("Idrobo");
+        pnlPersonalInfo.add(inApellidos);
+
+        lblNúmero.setLabelFor(inNumTel);
+        lblNúmero.setText("Numero de celular:");
+        pnlPersonalInfo.add(lblNúmero);
+
+        inNumTel.setText("3007463520");
+        inNumTel.setToolTipText("");
+        pnlPersonalInfo.add(inNumTel);
+
+        lblPrograma.setLabelFor(inPrograma);
+        lblPrograma.setText("Programa:");
+        pnlPersonalInfo.add(lblPrograma);
+        pnlPersonalInfo.add(inPrograma);
+
+        lblRol.setText("Rol:");
+        pnlPersonalInfo.add(lblRol);
+        pnlPersonalInfo.add(inRol);
+
+        lblEmail.setLabelFor(inEmail);
+        lblEmail.setText("Email:");
+        pnlPersonalInfo.add(lblEmail);
+
+        inEmail.setText("dayana@unicauca.edu.co");
+        pnlPersonalInfo.add(inEmail);
+
+        lblContra.setLabelFor(inContra);
+        lblContra.setText("Contraseña:");
+        pnlPersonalInfo.add(lblContra);
+
+        inContra.setText("Dayana$123");
+        pnlPersonalInfo.add(inContra);
+
+        lblContra2.setLabelFor(inContra2);
+        lblContra2.setText("Confirmar contraseña:");
+        pnlPersonalInfo.add(lblContra2);
+
+        inContra2.setText("Dayana$123");
+        pnlPersonalInfo.add(inContra2);
+
+        pnlSaveAndHome.setLayout(new java.awt.GridLayout(2, 1, 0, 2));
+
+        btReg.setText("Guardar");
         btReg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRegActionPerformed(evt);
             }
         });
+        pnlSaveAndHome.add(btReg);
 
-        lblRol.setText("Rol:");
+        btnBackToHome.setText("Home");
+        btnBackToHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackToHomeActionPerformed(evt);
+            }
+        });
+        pnlSaveAndHome.add(btnBackToHome);
+
+        javax.swing.GroupLayout pnlAllLayout = new javax.swing.GroupLayout(pnlAll);
+        pnlAll.setLayout(pnlAllLayout);
+        pnlAllLayout.setHorizontalGroup(
+            pnlAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAllLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlSaveAndHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAllLayout.createSequentialGroup()
+                        .addComponent(pnlPersonalInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(21, 21, 21))))
+        );
+        pnlAllLayout.setVerticalGroup(
+            pnlAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAllLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlPersonalInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(pnlSaveAndHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblNombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inNombre))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblNúmero)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inNumTel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblApellidos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inApellidos))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblPrograma)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inPrograma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblEmail)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inEmail))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblRol)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inRol, 0, 362, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblContra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inContra2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btReg)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblContra2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inContra)))
+                .addComponent(pnlAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(inNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblApellidos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNúmero)
-                    .addComponent(inNumTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPrograma)
-                    .addComponent(inPrograma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmail)
-                    .addComponent(inEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRol)
-                    .addComponent(inRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblContra)
-                    .addComponent(inContra2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblContra2)
-                    .addComponent(inContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(btReg))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlAll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
-        inNombre.getAccessibleContext().setAccessibleName("Nombre");
-        inNombre.getAccessibleContext().setAccessibleDescription("Nombre del usuario");
+        getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
     
     /**
@@ -222,10 +210,15 @@ public class RegisterForm extends javax.swing.JPanel{
         //Se manda la info al controlador para que haga el registro
         Controller.registrar(nom, ape, email, rol, programa, numCel, contra, contra2);
     }//GEN-LAST:event_btRegActionPerformed
+
+    private void btnBackToHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToHomeActionPerformed
+        Controller.OpenPanel(new Selector());
+    }//GEN-LAST:event_btnBackToHomeActionPerformed
     
     //<editor-fold defaultstate="collapsed" desc="Declaracion de variables">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btReg;
+    private javax.swing.JButton btnBackToHome;
     private javax.swing.JTextField inApellidos;
     private javax.swing.JPasswordField inContra;
     private javax.swing.JPasswordField inContra2;
@@ -243,6 +236,9 @@ public class RegisterForm extends javax.swing.JPanel{
     private javax.swing.JLabel lblPrograma;
     private javax.swing.JLabel lblRol;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel pnlAll;
+    private javax.swing.JPanel pnlPersonalInfo;
+    private javax.swing.JPanel pnlSaveAndHome;
     // End of variables declaration//GEN-END:variables
     //</editor-fold>
 }
