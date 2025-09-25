@@ -1,14 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package co.unicauca.solid.UI;
 
+import co.unicauca.domain.FormatA;
+import co.unicauca.domain.Program;
 import co.unicauca.solid.domain.access.Factory;
 import co.unicauca.solid.domain.access.IUserRepository;
 import co.unicauca.domain.Register;
+import co.unicauca.domain.Roles;
 import co.unicauca.domain.utilities.Cifrador;
 import co.unicauca.domain.utilities.clsExceptions;
+import co.unicauca.solid.domain.access.IFormatARepository;
+import java.util.List;
 import java.util.regex.Pattern;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -38,8 +39,9 @@ public class Controller {
     private static void initialize(String panelName){
         Frame = new JFrame(panelName);
         Frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Frame.setSize(400, 300);
+        Frame.setSize(600, 500);
         Frame.add(new Selector());Frame.setVisible(true);
+        Frame.setLocationRelativeTo(null);
     }
     
     /**
@@ -47,18 +49,17 @@ public class Controller {
      * @param Content El nuevo panel a usar
      */
     protected static void OpenPanel(JPanel Content){
-        Frame.setSize(400, 300);
+        Frame.setSize(600, 500);
         Frame.setContentPane(Content);
         Frame.validate();
+        Frame.setLocationRelativeTo(null);
     }
     
     protected static void setSize(int width, int height){
         Frame.setSize(width, height);
+        Frame.setLocationRelativeTo(null);
         Frame.validate();
     }
-    //</editor-fold>
-    
-    //<editor-fold defaultstate="collapsed" desc="Funciones de registro">
     /**
      * Se encarga de verificar los datos introducidos
      * @param nom Nombre
@@ -95,27 +96,105 @@ public class Controller {
      * @param contra Contraseña
      * @param contra2 Contraseña de confirmacion
      */
-    public static void registrar(String nom, String ape, String email, String rol, String programa, Long numCel, char[] contra, char[] contra2){
-        try{
-            IUserRepository repository = Factory.getInstance().getRepository("default");
-            if(!Controller.verificacionDatos(nom, ape, email, contra, contra2)){new clsExceptions("Datos no validos, verifique que los datos ingresados sean correctos", "Correo Invalido");}
-            if(repository.checkUser(email)){new clsExceptions("Este usuario ya existe", "Usario existente");}
-                String contraCif = Cifrador.base64Converter(Cifrador.cifrarContrasena(contra));
-                Register Registro = new Register(nom, ape, email, rol, programa, numCel, contraCif);
-                if(repository.register(Registro)){
-                    System.out.println("Usuario registrado");
-                    
-                }
-        }catch(Exception ex){
+
+    public static void registrar(String nom, String ape, String email, Roles rol, Program programa, Long numCel, char[] contra, char[] contra2){
+    try{
+        IUserRepository repository = Factory.getInstance().getUserRepository("default");
+
+        if(!Controller.verificacionDatos(nom, ape, email, contra, contra2)){
+            JOptionPane.showMessageDialog(null, "Datos no válidos, verifique que los datos ingresados sean correctos", "Correo inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if(repository.checkUser(email)){
+            JOptionPane.showMessageDialog(null, "Este usuario ya existe", "Usuario existente", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        String contraCif = Cifrador.base64Converter(Cifrador.cifrarContrasena(contra));
+        Register Registro = new Register(nom, ape, email, rol, programa, numCel, contraCif);
+
+        if(repository.register(Registro)){
+            JOptionPane.showMessageDialog(null, "Usuario registrado", "INFO", JOptionPane.INFORMATION_MESSAGE);
+            Controller.OpenPanel(new Selector());
+            System.out.println("Usuario registrado");
+        }
+
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null, "Error inesperado: " + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+    /**
+     * getAll
+     * @return 
+     */
+    public static List<Program> getAllProgram(){
+        try {
+            var repository = Factory.getInstance().getProgramRepository("default");
+            return repository.getAll();
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error inesperado:" + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        return List.of();
     }
-    //</editor-fold>
+    public static List<Roles> getAllRoles(){
+        try {
+            var repository = Factory.getInstance().getRolesRepository("default");
+            return repository.getAll();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error inesperado:" + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        return List.of();
+    }    
+    /**
+     * login
+     * @param email
+     * @param contra 
+     */
+    public static void login(String email, char[] contra){
+        try {
+            String contraCif = Cifrador.base64Converter(Cifrador.cifrarContrasena(contra));
+            IUserRepository repository = Factory.getInstance().getUserRepository("default");
+            if (repository.checkUser(email)) {
+                var user = repository.getByEmail(email);
+                var idTeacher = repository.getIdTeacherByEmail(email);
+                if (user.getPassword().equals(contraCif)) {
+                    var uploadFormatADirector = UploadFormatADirector.getInstance();
+                    uploadFormatADirector.setIdTeacher(idTeacher);
+                    Controller.OpenPanel(new Menu());
+                }else{
+                    JOptionPane.showMessageDialog(null, "Credenciales incorrectas", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }else{
+                String[] options = {"Registrarse", "OK"};
+                int choice = JOptionPane.showOptionDialog(
+                        null,
+                        "El usuario no existe",
+                        "ERROR",
+                        JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.ERROR_MESSAGE,
+                        null,
+                        options,
+                        options[1]
+                );
+
+                if (choice == 0) {
+                    Controller.OpenPanel(new RegisterForm());
+                }
+            }
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error inesperado:" + ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+       
+    }
     
-    //<editor-fold defaultstate="collapsed" desc="Funciones de Login">
-    
-    //</editor-fold>
-    
+    public static boolean saveFormatA(int idTeacher, FormatA formatA){
+        IFormatARepository repository = Factory.getInstance().getFormatARepository("default");
+        repository.register(idTeacher, formatA);
+        return repository.register(idTeacher, formatA);
+    }
     /**
      * Funcion tipo wrapper para pruebas unitarias
      * @param nom
@@ -128,7 +207,7 @@ public class Controller {
      * @param contra2 
      */
     @Deprecated
-    public static void wrapperRegistrar(String nom, String ape, String email, String rol, String programa, Long numCel, char[] contra, char[] contra2){
+    public static void wrapperRegistrar(String nom, String ape, String email, Roles rol, Program programa, Long numCel, char[] contra, char[] contra2){
         registrar(nom, ape, email, rol, programa, numCel, contra, contra2);
     }
     

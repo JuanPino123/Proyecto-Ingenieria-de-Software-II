@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package co.unicauca.solid.UI;
 
 /**
@@ -9,14 +5,13 @@ package co.unicauca.solid.UI;
  * @author JUANDA
  */
 public class LoginForm extends javax.swing.JPanel {
-
     /**
      * Creates new form LoginForm
      */
     public LoginForm() {
         initComponents();
-    }
 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,70 +22,90 @@ public class LoginForm extends javax.swing.JPanel {
     private void initComponents() {
 
         lblTitle = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        pnlLoginDate = new javax.swing.JPanel();
         lblCorreo = new javax.swing.JLabel();
-        lblContra = new javax.swing.JLabel();
         inCorreo = new javax.swing.JTextField();
-        btAcceso = new javax.swing.JButton();
+        lblContra = new javax.swing.JLabel();
         inContra = new javax.swing.JPasswordField();
+        btnAcceso = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("Login");
+        lblTitle.setText("Inicio de sesión");
         lblTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblTitle.setMaximumSize(new java.awt.Dimension(87, 32));
         lblTitle.setMinimumSize(new java.awt.Dimension(87, 32));
 
+        pnlLoginDate.setLayout(new java.awt.GridLayout(2, 2, 0, 18));
+
         lblCorreo.setLabelFor(inCorreo);
         lblCorreo.setText("Correo:");
+        pnlLoginDate.add(lblCorreo);
+
+        inCorreo.setText("dayana@unicauca.edu.co");
+        pnlLoginDate.add(inCorreo);
 
         lblContra.setLabelFor(inContra);
         lblContra.setText("Contraseña:");
+        pnlLoginDate.add(lblContra);
 
-        btAcceso.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btAcceso.setText("Acceder");
-        btAcceso.addActionListener(new java.awt.event.ActionListener() {
+        inContra.setText("Dayana$123");
+        pnlLoginDate.add(inContra);
+
+        btnAcceso.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAcceso.setText("Acceder");
+        btnAcceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAccesoActionPerformed(evt);
+                btnAccesoActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(328, Short.MAX_VALUE)
+                .addComponent(btnAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pnlLoginDate, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                    .addContainerGap()))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(177, Short.MAX_VALUE)
+                .addComponent(btnAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(28, 28, 28)
+                    .addComponent(pnlLoginDate, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(115, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 632, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblContra)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inContra, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCorreo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inCorreo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(88, 88, 88)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCorreo)
-                    .addComponent(inCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblContra)
-                    .addComponent(inContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(117, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -98,21 +113,24 @@ public class LoginForm extends javax.swing.JPanel {
      * Inicia la secuencia de acceso/login
      * @param evt 
      */
-    private void btAccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAccesoActionPerformed
+    private void btnAccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccesoActionPerformed
         //Obtiene los datos de acceso/login
         String correo = inCorreo.getText();
         char[] contra = inContra.getPassword();
         //Manda la info del login/acceso a la clase Login
-        
-    }//GEN-LAST:event_btAccesoActionPerformed
+        //TODO: realizar inicio de sesion xd    
+        Controller.login(correo, contra);
+    }//GEN-LAST:event_btnAccesoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAcceso;
+    private javax.swing.JButton btnAcceso;
     private javax.swing.JPasswordField inContra;
     private javax.swing.JTextField inCorreo;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblContra;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlLoginDate;
     // End of variables declaration//GEN-END:variables
 }

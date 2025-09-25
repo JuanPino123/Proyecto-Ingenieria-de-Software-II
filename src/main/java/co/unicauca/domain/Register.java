@@ -1,20 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package co.unicauca.domain;
 
 
-import co.unicauca.domain.utilities.Cifrador;
-import java.sql.PreparedStatement;
-import java.util.Arrays;
 /**
  *
  * @author JUANDA
  */
 public class Register implements AutoCloseable{
     
-    private String nombre, apellido, correo, rol, programa;//Valores usados por y para el registro
+    private String nombre, apellido, correo; 
+    private Roles rol;
+    private Program programa;
     private Long numTel;
     private String contra;//Contraseña ya cifrada
     
@@ -28,7 +23,7 @@ public class Register implements AutoCloseable{
      * @param num Numero de telefono(puede ser nulo)
      * @param contra Contraseña sin cifrar
      */
-    public Register(String nom, String ape, String corr, String rol, String prog, Long num, String contra) throws Exception {
+    public Register(String nom, String ape, String corr, Roles rol, Program prog, Long num, String contra) throws Exception {
         super();
         this.nombre = nom;
         this.apellido = ape;
@@ -52,11 +47,11 @@ public class Register implements AutoCloseable{
         return correo;
     }
 
-    public String getRol() {
+    public Roles getRoles() {
         return rol;
     }
 
-    public String getPrograma() {
+    public Program getPrograma() {
         return programa;
     }
 

@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package co.unicauca.solid.domain.access;
 
 import co.unicauca.domain.Register;
+import co.unicauca.domain.Users;
 
 /**
  *Metodos disponibles desde el repositorio de usuarios
@@ -14,4 +11,6 @@ public interface IUserRepository {
     boolean register(Register newRegister);
     boolean deleteUserByEmail(String email);
     boolean checkUser(String email);
+    Users getByEmail(String email);
+    public int getIdTeacherByEmail(String email);
 }

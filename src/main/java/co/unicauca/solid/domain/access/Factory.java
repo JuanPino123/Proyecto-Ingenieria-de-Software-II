@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package co.unicauca.solid.domain.access;
 
 /**
@@ -22,7 +18,7 @@ public class Factory {
         return instance;
     }
     
-    public IUserRepository getRepository(String type){
+    public IUserRepository getUserRepository(String type){
         IUserRepository result = null;
         switch(type){
             case "default":result = new UserRepository();
@@ -30,4 +26,27 @@ public class Factory {
         return result;
     }
     
+    public IProgramRepository getProgramRepository(String type){
+        IProgramRepository result = null;
+        switch(type){
+            case "default":result = new ProgramRepository();
+        }
+        return result;
+    }
+    
+    public IRolesRepository getRolesRepository(String type){
+        IRolesRepository result = null;
+        switch(type){
+            case "default":result = new RolesRepository();
+        }
+        return result;
+    }
+    
+        public IFormatARepository getFormatARepository(String type){
+        FormatARepository result = null;
+        switch(type){
+            case "default":result = new FormatARepository();
+        }
+        return result;
+    }
 }
