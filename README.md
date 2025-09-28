@@ -1,3 +1,4 @@
+Lista de requisitos actuales:
 - [x] Req 1: Yo como docente necesito registrarme en el sistema de Gestión de Trabajos de grado
 para iniciar el flujo de un proyecto de grado, comenzando con la presentación del
 formato A. Contexto: Los datos que se deben ingresar son: nombres, apellidos, celular
