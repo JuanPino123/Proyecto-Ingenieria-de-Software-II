@@ -124,6 +124,10 @@ public class FormatA {
         this.idTeacher = idTeacher;
     }
     
-    
+    @Override
+public String toString() {
+    return "Formato A - ID: " + this.getId();
+}
+
     
 }

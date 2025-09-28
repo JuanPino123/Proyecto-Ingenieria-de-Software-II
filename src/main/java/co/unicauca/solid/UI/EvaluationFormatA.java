@@ -5,7 +5,6 @@
 package co.unicauca.solid.UI;
 
 import co.unicauca.domain.DegreeWorkStatus;
-import co.unicauca.domain.Evaluation;
 import co.unicauca.domain.FormatA;
 import co.unicauca.solid.domain.services.CoordinateerService;
 import javax.swing.JOptionPane;
@@ -14,7 +13,6 @@ import javax.swing.JOptionPane;
  *
  * @author jusev
  */
-
 public class EvaluationFormatA extends javax.swing.JFrame {
 
     /**
@@ -22,6 +20,7 @@ public class EvaluationFormatA extends javax.swing.JFrame {
      */
     public EvaluationFormatA() {
         initComponents();
+        loadFormats();
     }
 
     /**
@@ -40,10 +39,11 @@ public class EvaluationFormatA extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         rbApprove = new javax.swing.JRadioButton();
         rbDecline = new javax.swing.JRadioButton();
-        jButton1 = new javax.swing.JButton();
+        save = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObservations = new javax.swing.JTextArea();
+        volver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,7 +51,7 @@ public class EvaluationFormatA extends javax.swing.JFrame {
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenu.setText("EVALUATE FORMAT A");
 
-        cbFormats.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "4" }));
+        cbFormats.setModel(new javax.swing.DefaultComboBoxModel<>());
         cbFormats.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbFormatsActionPerformed(evt);
@@ -74,10 +74,10 @@ public class EvaluationFormatA extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("SAVE");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        save.setText("SAVE");
+        save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                saveActionPerformed(evt);
             }
         });
 
@@ -87,6 +87,13 @@ public class EvaluationFormatA extends javax.swing.JFrame {
         txtObservations.setRows(5);
         jScrollPane1.setViewportView(txtObservations);
 
+        volver.setText("Volver");
+        volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,25 +102,26 @@ public class EvaluationFormatA extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(rbApprove))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(rbApprove))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(cbFormats, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(108, 108, 108)
-                                        .addComponent(rbDecline)))))
-                        .addGap(139, 139, 139))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(235, 235, 235))))
+                                .addGap(30, 30, 30)
+                                .addComponent(cbFormats, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(108, 108, 108)
+                                .addComponent(rbDecline)))))
+                .addGap(139, 139, 139))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(volver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(save)
+                .addGap(235, 235, 235))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +141,9 @@ public class EvaluationFormatA extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(save)
+                    .addComponent(volver))
                 .addGap(67, 67, 67))
         );
 
@@ -152,16 +162,13 @@ public class EvaluationFormatA extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbDeclineActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        // 1. Obtener el Formato A seleccionado
+    private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         FormatA formato = (FormatA) cbFormats.getSelectedItem();
         if (formato == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un Formato A.");
             return;
         }
 
-        // 2. Determinar la decisión (Aprobar / Rechazar)
         DegreeWorkStatus decision;
         if (rbApprove.isSelected()) {
             decision = DegreeWorkStatus.APROBADO;
@@ -172,69 +179,97 @@ public class EvaluationFormatA extends javax.swing.JFrame {
             return;
         }
 
-        // 3. Obtener las observaciones
         String obs = txtObservations.getText();
 
-        // 4. Llamar al servicio para guardar la evaluación
         CoordinateerService service = new CoordinateerService();
         service.evaluateFormatA(formato.getId(), decision, obs);
 
-        // 5. Confirmación visual al usuario
         JOptionPane.showMessageDialog(this,
                 "Evaluación guardada y notificación enviada.",
                 "Éxito",
                 JOptionPane.INFORMATION_MESSAGE);
 
-        // 6. (Opcional) Cerrar el formulario después de guardar
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+        // 🔹 Preparar para otra evaluación
+        cbFormats.setSelectedIndex(-1);
+        rbApprove.setSelected(false);
+        rbDecline.setSelected(false);
+        txtObservations.setText("");
+
+    }//GEN-LAST:event_saveActionPerformed
+
+    private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
+        Controller.OpenPanel(new Menu());
+    }//GEN-LAST:event_volverActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-    /* Set the Nimbus look and feel */
-    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-     */
-    try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
             }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
-    //</editor-fold>
+        //</editor-fold>
 
-    /* Create and display the form */
-    java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
             new EvaluationFormatA().setVisible(true);
+        });
+    }
+
+    private void loadFormats() {
+        try {
+            var repo = co.unicauca.solid.domain.access.Factory
+                    .getInstance()
+                    .getFormatARepository("default");
+
+            java.util.List<FormatA> formatos = repo.getAll();
+
+            javax.swing.DefaultComboBoxModel<FormatA> model = new javax.swing.DefaultComboBoxModel<>();
+            for (FormatA f : formatos) {
+                model.addElement(f);
+            }
+
+            cbFormats.setModel(model);
+
+        } catch (Exception ex) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Error cargando formatos: " + ex.getMessage(),
+                    "ERROR",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-    });
-}
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> cbFormats;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<FormatA> cbFormats;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMenu;
     private javax.swing.JRadioButton rbApprove;
     private javax.swing.JRadioButton rbDecline;
+    private javax.swing.JButton save;
     private javax.swing.JTextArea txtObservations;
+    private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
 }

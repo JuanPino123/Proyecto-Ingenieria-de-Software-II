@@ -1,6 +1,7 @@
 package co.unicauca.solid.domain.access;
 
 import co.unicauca.domain.FormatA;
+import java.util.List;
 
 
 /**
@@ -9,5 +10,6 @@ import co.unicauca.domain.FormatA;
  */
 public interface IFormatARepository {
     boolean register(int idTeacher, FormatA formatA);
-    
+    List<FormatA> getAll();
+
 }

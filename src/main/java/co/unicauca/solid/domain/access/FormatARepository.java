@@ -11,12 +11,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Valentina
  */
 public class FormatARepository implements IFormatARepository {
+    private final List<FormatA> formats = new ArrayList<>();
 
     /**
      * Guarda el archivo 'Formato A' y la 'Carta de aceptacion' (si la hay)
@@ -37,6 +40,10 @@ public class FormatARepository implements IFormatARepository {
         } catch (Exception e) {
             return false;
         }
+    }
+    @Override
+    public List<FormatA> getAll() {
+        return new ArrayList<>(formats); 
     }
 
     /**
