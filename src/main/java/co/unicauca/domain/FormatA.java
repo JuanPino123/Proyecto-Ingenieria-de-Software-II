@@ -19,6 +19,15 @@ public class FormatA {
     private String specificObjectives;
     private FilesHistory formatA;
     private FilesHistory acceptanceLetter;
+    private DegreeWorkStatus status;
+
+    public void setStatus(DegreeWorkStatus status) {
+        this.status = status;
+    }
+
+    public DegreeWorkStatus getStatus() {
+        return status;
+    }
     private int idTeacher;
     
 

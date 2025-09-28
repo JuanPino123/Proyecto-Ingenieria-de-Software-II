@@ -1,8 +1,10 @@
 package co.unicauca.solid.domain.access;
 
 import Connection.GenConnection;
+import co.unicauca.domain.DegreeWorkStatus;
 import co.unicauca.domain.FilesHistory;
 import co.unicauca.domain.FormatA;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -103,6 +105,19 @@ public class FormatARepository implements IFormatARepository {
             return true;
         } catch (SQLException ex) {
             throw ex;
+        }
+    }
+    public void updateEvaluation(int formatAId, DegreeWorkStatus status, String observaciones) throws SQLException {
+        String sql = "UPDATE FormatA SET status = ?, observaciones = ? WHERE id = ?";
+
+        try (Connection conn = GenConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, status.name());      // Guarda "APROBADO" o "RECHAZADO"
+            pstmt.setString(2, observaciones);      // Observaciones escritas
+            pstmt.setInt(3, formatAId);             // ID del registro a actualizar
+
+            pstmt.executeUpdate();
         }
     }
 
