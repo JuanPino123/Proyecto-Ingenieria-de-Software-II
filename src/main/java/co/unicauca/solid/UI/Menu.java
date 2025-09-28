@@ -12,6 +12,7 @@ public class Menu extends javax.swing.JPanel {
     public Menu() {
         initComponents();
     }
+    private EvaluateFormatA evalFormatAPanel;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,6 +27,7 @@ public class Menu extends javax.swing.JPanel {
         pnlOptions = new javax.swing.JPanel();
         btnBackToHome = new javax.swing.JButton();
         btnUploadFormatA = new javax.swing.JButton();
+        btnEvaluateFormatA1 = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
 
         lblMenu.setFont(new java.awt.Font("Segoe UI", 0, 27)); // NOI18N
@@ -50,13 +52,20 @@ public class Menu extends javax.swing.JPanel {
         });
         pnlOptions.add(btnUploadFormatA);
 
+        btnEvaluateFormatA1.setText("Evaluar Formato");
+        btnEvaluateFormatA1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEvaluateFormatA1ActionPerformed(evt);
+            }
+        });
+        pnlOptions.add(btnEvaluateFormatA1);
+
         btnExit.setText("Salir");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
             }
         });
-        pnlOptions.add(btnExit);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -65,7 +74,9 @@ public class Menu extends javax.swing.JPanel {
             .addComponent(lblMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(193, Short.MAX_VALUE)
-                .addComponent(pnlOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(168, 168, 168))
         );
         layout.setVerticalGroup(
@@ -75,7 +86,9 @@ public class Menu extends javax.swing.JPanel {
                 .addComponent(lblMenu)
                 .addGap(52, 52, 52)
                 .addComponent(pnlOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -91,9 +104,17 @@ public class Menu extends javax.swing.JPanel {
         Controller.OpenPanel(new Selector());
     }//GEN-LAST:event_btnBackToHomeActionPerformed
 
+    private void btnEvaluateFormatA1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEvaluateFormatA1ActionPerformed
+        if (evalFormatAPanel == null) {
+            evalFormatAPanel = new EvaluateFormatA();
+        }
+        Controller.OpenPanel(evalFormatAPanel);
+    }//GEN-LAST:event_btnEvaluateFormatA1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackToHome;
+    private javax.swing.JButton btnEvaluateFormatA1;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnUploadFormatA;
     private javax.swing.JLabel lblMenu;

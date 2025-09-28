@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package co.unicauca.solid.UI;
 
@@ -13,13 +13,16 @@ import javax.swing.JOptionPane;
  *
  * @author jusev
  */
-public class EvaluationFormatA extends javax.swing.JFrame {
+public class EvaluateFormatA extends javax.swing.JPanel {
 
     /**
-     * Creates new form EvaluationFormatA
+     * Creates new form EvaluateFormatA
      */
-    public EvaluationFormatA() {
+    public EvaluateFormatA() {
         initComponents();
+        decisionGroup = new javax.swing.ButtonGroup();
+    decisionGroup.add(rbApprove);
+    decisionGroup.add(rbDecline);
         loadFormats();
     }
 
@@ -32,24 +35,25 @@ public class EvaluationFormatA extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        lblMenu = new javax.swing.JLabel();
-        cbFormats = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        lblMenu = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cbFormats = new javax.swing.JComboBox<>();
         rbApprove = new javax.swing.JRadioButton();
         rbDecline = new javax.swing.JRadioButton();
-        save = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObservations = new javax.swing.JTextArea();
+        save = new javax.swing.JButton();
         volver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1.setText("SELECT FORMAT A");
 
         lblMenu.setFont(new java.awt.Font("Lucida Console", 0, 27)); // NOI18N
         lblMenu.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMenu.setText("EVALUATE FORMAT A");
+
+        jLabel2.setText("SELECT FORMAT A");
 
         cbFormats.setModel(new javax.swing.DefaultComboBoxModel<>());
         cbFormats.addActionListener(new java.awt.event.ActionListener() {
@@ -57,8 +61,6 @@ public class EvaluationFormatA extends javax.swing.JFrame {
                 cbFormatsActionPerformed(evt);
             }
         });
-
-        jLabel1.setText("SELECT FORMAT A");
 
         rbApprove.setText("APPROVE");
         rbApprove.addActionListener(new java.awt.event.ActionListener() {
@@ -74,18 +76,18 @@ public class EvaluationFormatA extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("OBSERVATIONS:");
+
+        txtObservations.setColumns(20);
+        txtObservations.setRows(5);
+        jScrollPane1.setViewportView(txtObservations);
+
         save.setText("SAVE");
         save.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("OBSERVATIONS:");
-
-        txtObservations.setColumns(20);
-        txtObservations.setRows(5);
-        jScrollPane1.setViewportView(txtObservations);
 
         volver.setText("Volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -94,60 +96,61 @@ public class EvaluationFormatA extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(rbApprove))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(cbFormats, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(108, 108, 108)
-                                .addComponent(rbDecline)))))
-                .addGap(139, 139, 139))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(rbApprove)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(rbDecline))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(cbFormats, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
                 .addComponent(volver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(147, 147, 147)
                 .addComponent(save)
-                .addGap(235, 235, 235))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(39, 39, 39)
                 .addComponent(lblMenu)
-                .addGap(67, 67, 67)
+                .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbFormats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(75, 75, 75)
+                    .addComponent(jLabel2)
+                    .addComponent(cbFormats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbApprove)
                     .addComponent(rbDecline))
-                .addGap(59, 59, 59)
-                .addComponent(jLabel2)
+                .addGap(65, 65, 65)
+                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(save)
                     .addComponent(volver))
-                .addGap(67, 67, 67))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbFormatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbFormatsActionPerformed
@@ -161,6 +164,7 @@ public class EvaluationFormatA extends javax.swing.JFrame {
     private void rbDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDeclineActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbDeclineActionPerformed
+
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
         FormatA formato = (FormatA) cbFormats.getSelectedItem();
@@ -194,46 +198,15 @@ public class EvaluationFormatA extends javax.swing.JFrame {
         rbApprove.setSelected(false);
         rbDecline.setSelected(false);
         txtObservations.setText("");
+        if (cbFormats.getItemCount() > 0) {
+        cbFormats.setSelectedIndex(0);
+}
 
     }//GEN-LAST:event_saveActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         Controller.OpenPanel(new Menu());
     }//GEN-LAST:event_volverActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EvaluationFormatA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new EvaluationFormatA().setVisible(true);
-        });
-    }
-
     private void loadFormats() {
         try {
             var repo = co.unicauca.solid.domain.access.Factory
@@ -257,13 +230,11 @@ public class EvaluationFormatA extends javax.swing.JFrame {
         }
     }
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<FormatA> cbFormats;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMenu;
     private javax.swing.JRadioButton rbApprove;
@@ -272,4 +243,5 @@ public class EvaluationFormatA extends javax.swing.JFrame {
     private javax.swing.JTextArea txtObservations;
     private javax.swing.JButton volver;
     // End of variables declaration//GEN-END:variables
+    private javax.swing.ButtonGroup decisionGroup;
 }
