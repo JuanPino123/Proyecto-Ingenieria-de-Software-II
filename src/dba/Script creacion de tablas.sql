@@ -105,6 +105,9 @@ create table FormatA(
 	generalObjective varchar(5000) not null,
 	specificObjectives varchar(5000) not null,
 	idTeacher integer NOT NULL,
+	status TEXT CHECK(status IN ('APROBADO', 'RECHAZADO', 'PENDIENTE')),
+	observaciones text DEFAULT '',
+
 	CONSTRAINT fk_formatA_teacher foreign KEY (idTeacher) REFERENCES teacher(id)
 );
 

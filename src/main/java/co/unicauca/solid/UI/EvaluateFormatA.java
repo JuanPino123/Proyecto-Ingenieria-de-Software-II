@@ -205,7 +205,7 @@ public class EvaluateFormatA extends javax.swing.JPanel {
     }//GEN-LAST:event_saveActionPerformed
 
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
-        Controller.OpenPanel(new Menu());
+        Controller.OpenPanel(new Selector());
     }//GEN-LAST:event_volverActionPerformed
     private void loadFormats() {
         try {

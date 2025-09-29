@@ -28,6 +28,18 @@ public class FormatA {
     public DegreeWorkStatus getStatus() {
         return status;
     }
+
+    public String getObservations() {
+        return observations;
+    }
+    private String observations;
+
+   
+
+    public void setObservations(String observations) {
+        this.observations = observations;
+    }
+
     private int idTeacher;
     
 

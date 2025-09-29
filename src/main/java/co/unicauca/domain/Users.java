@@ -1,7 +1,7 @@
 package co.unicauca.domain;
 
 /**
- *
+ * Clase que representa a un usuario
  * @author Valentina
  */
 public class Users {
@@ -9,6 +9,7 @@ public class Users {
     private String email;
     private String password;
     private int idPerson;
+    private Roles role; 
 
     public Users() {
     }
@@ -44,6 +45,12 @@ public class Users {
     public void setIdPerson(int idPerson) {
         this.idPerson = idPerson;
     }
-    
-    
+
+    public TypeRoles getRole() {
+        return role.getRol();
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
 }

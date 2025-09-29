@@ -137,7 +137,7 @@ public class LoginForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAccesoActionPerformed
 
     private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
-        Controller.OpenPanel(new Menu());
+        Controller.OpenPanel(new MenuTeachers());
     }//GEN-LAST:event_HomeActionPerformed
 
 

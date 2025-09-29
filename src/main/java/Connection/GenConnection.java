@@ -17,7 +17,7 @@ public class GenConnection {
      * Conecta a la base de datos, por favor modifique la URL de ser necesario
      */
     public static void connect() {
-        String url = "jdbc:sqlite:C:/Users/JUANDA/Documents/Practica#2/unicauca_tg.db";
+        String url = "jdbc:sqlite:C:\\Users\\jusev\\Desktop\\ProyectoSoftwareII\\Proyecto-Ingenieria-de-Software-II\\mydb.db";
         //Conexion a la base de datos
         try {
             conn = DriverManager.getConnection(url);
@@ -40,7 +40,7 @@ public class GenConnection {
     }
 
     public static Connection getConnection() throws SQLException {
-        String url = "jdbc:sqlite:tu_basedatos.db";
+        String url = "jdbc:sqlite:C:\\Users\\jusev\\Desktop\\ProyectoSoftwareII\\Proyecto-Ingenieria-de-Software-II\\mydb.db";
         return DriverManager.getConnection(url);
     }
 

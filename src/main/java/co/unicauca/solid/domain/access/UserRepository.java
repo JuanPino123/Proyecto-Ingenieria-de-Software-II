@@ -196,47 +196,112 @@ public class UserRepository implements IUserRepository {
         return false;
     }
 
+    /**
+     * @Override public Users getByEmail(String email) { Users user = null; try
+     * { String SQL = "SELECT * FROM users WHERE email = ?";
+     * GenConnection.connect(); PreparedStatement pstmt =
+     * GenConnection.conn.prepareStatement(SQL); pstmt.setString(1, email);
+     *
+     * ResultSet rs = pstmt.executeQuery(); if (rs.next()) { user = new Users();
+     * user.setId(rs.getInt("id")); user.setEmail(rs.getString("email"));
+     * user.setPassword(rs.getString("password"));
+     * user.setIdPerson(rs.getInt("idPerson")); }
+     *
+     * rs.close(); pstmt.close(); GenConnection.conn.close(); } catch (Exception
+     * ex) { System.out.println("Error: " + ex.getMessage()); } return user; }
+     */
     @Override
     public Users getByEmail(String email) {
         Users user = null;
         try {
-            String SQL = "SELECT * FROM users WHERE email = ?";
-            GenConnection.connect();
-            PreparedStatement pstmt = GenConnection.conn.prepareStatement(SQL);
-            pstmt.setString(1, email);
+            System.out.println("🔍 Buscando usuario con email: " + email);
 
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
+            // PRIMERO: Buscar usuario básico
+            String userSQL = "SELECT id, email, password, idPerson FROM users WHERE email = ?";
+            GenConnection.connect();
+
+            PreparedStatement userStmt = GenConnection.conn.prepareStatement(userSQL);
+            userStmt.setString(1, email);
+            ResultSet userRs = userStmt.executeQuery();
+
+            if (userRs.next()) {
+                System.out.println("✅ Usuario encontrado en BD");
                 user = new Users();
-                user.setId(rs.getInt("id"));
-                user.setEmail(rs.getString("email"));
-                user.setPassword(rs.getString("password"));
-                user.setIdPerson(rs.getInt("idPerson"));
+                user.setId(userRs.getInt("id"));
+                user.setEmail(userRs.getString("email"));
+                user.setPassword(userRs.getString("password"));
+                user.setIdPerson(userRs.getInt("idPerson"));
+                System.out.println("📝 Datos usuario - ID: " + user.getId() + ", Email: " + user.getEmail());
+
+                // SEGUNDO: Buscar el rol - USANDO LA COLUMNA CORRECTA 'rol'
+                String roleSQL = "SELECT r.id, r.rol FROM roles r "
+                        + // ← COLUMNA CORRECTA: 'rol'
+                        "INNER JOIN users_roles ur ON r.id = ur.idRol "
+                        + "WHERE ur.idUser = ?";
+
+                PreparedStatement roleStmt = GenConnection.conn.prepareStatement(roleSQL);
+                roleStmt.setInt(1, user.getId());
+                ResultSet roleRs = roleStmt.executeQuery();
+
+                if (roleRs.next()) {
+                    System.out.println("✅ Rol encontrado");
+                    co.unicauca.domain.Roles role = new co.unicauca.domain.Roles();
+                    role.setId(roleRs.getInt("id"));
+                    role.setRol(roleRs.getString("rol"));  // ← COLUMNA CORRECTA: 'rol'
+                    user.setRole(role);
+                    System.out.println("🎭 Rol asignado: " + role.getRol());
+                } else {
+                    System.out.println("⚠️ Usuario NO tiene rol asignado en users_roles");
+
+                    // Debug: verificar qué hay en users_roles
+                    String debugSQL = "SELECT * FROM users_roles WHERE idUser = ?";
+                    PreparedStatement debugStmt = GenConnection.conn.prepareStatement(debugSQL);
+                    debugStmt.setInt(1, user.getId());
+                    ResultSet debugRs = debugStmt.executeQuery();
+
+                    if (!debugRs.next()) {
+                        System.out.println("❌ No hay registro en users_roles para este usuario");
+                    } else {
+                        System.out.println("✅ Hay registro en users_roles: idRol = " + debugRs.getInt("idRol"));
+                    }
+                    debugRs.close();
+                    debugStmt.close();
+                }
+
+                roleRs.close();
+                roleStmt.close();
+            } else {
+                System.out.println("❌ Usuario NO encontrado en la tabla 'users'");
             }
 
-            rs.close();
-            pstmt.close();
+            userRs.close();
+            userStmt.close();
             GenConnection.conn.close();
+
         } catch (Exception ex) {
-            System.out.println("Error: " + ex.getMessage());
+            System.out.println("❌ Error en getByEmail: " + ex.getMessage());
+            ex.printStackTrace();
         }
+
+        System.out.println("📤 Retornando usuario: " + (user != null ? "NO null" : "NULL"));
         return user;
     }
-    
+
     /**
      * Obtiene el idTeacher dado un correo | Usado para el director
+     *
      * @param email
-     * @return 
+     * @return
      */
     public int getIdTeacherByEmail(String email) {
         int idTeacher = -1;
 
         try {
-            String SQL = "SELECT t.id AS idTeacher " +
-                 "FROM users u " +
-                 "INNER JOIN person p ON u.idPerson = p.id " +
-                 "INNER JOIN teacher t ON p.id = t.idPerson " +
-                 "WHERE u.email = ?";
+            String SQL = "SELECT t.id AS idTeacher "
+                    + "FROM users u "
+                    + "INNER JOIN person p ON u.idPerson = p.id "
+                    + "INNER JOIN teacher t ON p.id = t.idPerson "
+                    + "WHERE u.email = ?";
             GenConnection.connect();
             PreparedStatement pstmt = GenConnection.conn.prepareStatement(SQL);
             pstmt.setString(1, email);
@@ -252,11 +317,10 @@ public class UserRepository implements IUserRepository {
             GenConnection.conn.close();
 
         } catch (Exception e) {
-            e.printStackTrace(); 
+            e.printStackTrace();
         }
 
         return idTeacher;
     }
-
 
 }

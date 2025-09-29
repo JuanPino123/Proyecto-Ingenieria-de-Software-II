@@ -19,6 +19,7 @@ import java.util.List;
  * @author Valentina
  */
 public class FormatARepository implements IFormatARepository {
+
     private final List<FormatA> formats = new ArrayList<>();
 
     /**
@@ -41,9 +42,39 @@ public class FormatARepository implements IFormatARepository {
             return false;
         }
     }
+
     @Override
     public List<FormatA> getAll() {
-        return new ArrayList<>(formats); 
+        List<FormatA> formatos = new ArrayList<>();
+        String sql = "SELECT id, title, modality, createAt, director, codirector, generalObjective, specificObjectives, idTeacher FROM FormatA";
+
+        try (Connection conn = GenConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
+
+            while (rs.next()) {
+                FormatA f = new FormatA();
+                f.setId(rs.getInt("id"));
+                f.setTitle(rs.getString("title"));
+                f.setModality(rs.getString("modality"));
+
+                // 🔹 Convertir String → LocalDate
+                String dateStr = rs.getString("createAt");
+                if (dateStr != null) {
+                    f.setCreateAt(LocalDate.parse(dateStr));
+                }
+
+                f.setDirector(rs.getString("director"));
+                f.setCodirector(rs.getString("codirector"));
+                f.setGeneralObjective(rs.getString("generalObjective"));
+                f.setSpecificObjectives(rs.getString("specificObjectives"));
+                f.setIdTeacher(rs.getInt("idTeacher"));
+
+                formatos.add(f);
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error cargando formatos: " + e.getMessage());
+        }
+        return formatos;
     }
 
     /**
@@ -57,8 +88,11 @@ public class FormatARepository implements IFormatARepository {
      */
     private int registerFormatA(int idTeacher, FormatA formatA) throws SQLException {
         try {
-            String SQL = "INSERT INTO FormatA ( title, modality, createAt, director, codirector, generalObjective, specificObjectives, idTeacher ) "
-                    + "VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )";
+            if (formatA.getStatus() == null) {
+            formatA.setStatus(DegreeWorkStatus.PENDIENTE);
+        }
+            String SQL = "INSERT INTO FormatA ( title, modality, createAt, director, codirector, generalObjective, specificObjectives, idTeacher, status ) "
+                    + "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ? )";
             GenConnection.connect();
             PreparedStatement pstmt = GenConnection.conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, formatA.getTitle());
@@ -69,6 +103,7 @@ public class FormatARepository implements IFormatARepository {
             pstmt.setString(6, formatA.getGeneralObjective());
             pstmt.setString(7, formatA.getSpecificObjectives());
             pstmt.setInt(8, idTeacher);
+            pstmt.setString(9, formatA.getStatus().name());  
 
             pstmt.executeUpdate();
 
@@ -114,11 +149,11 @@ public class FormatARepository implements IFormatARepository {
             throw ex;
         }
     }
+
     public void updateEvaluation(int formatAId, DegreeWorkStatus status, String observaciones) throws SQLException {
         String sql = "UPDATE FormatA SET status = ?, observaciones = ? WHERE id = ?";
 
-        try (Connection conn = GenConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conn = GenConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             pstmt.setString(1, status.name());      // Guarda "APROBADO" o "RECHAZADO"
             pstmt.setString(2, observaciones);      // Observaciones escritas
